@@ -1,7 +1,7 @@
 """Vector store module for document embeddings and retrieval."""
 
-from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
+from langchain_community.vectorstores import FAISS
+from langchain_openai import OpenAIEmbeddings
 from langchain.schema import Document
 from typing import List
 
@@ -15,7 +15,7 @@ class VectorStore:
         self.retriever = None
 
     
-    def create_vector_store(self, documents: List[Document]):
+    def create_vectorstore(self, documents: List[Document]):
         """"
         Create a vector store from a list of documents.
         Args:

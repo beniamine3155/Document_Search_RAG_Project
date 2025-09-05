@@ -1,5 +1,5 @@
 
-from src.nodes.nodes import RAGNodes
+from src.nodes.reactnode import RAGNodes
 from src.state.rag_state import RAGState
 from langgraph.graph import StateGraph, END
 
@@ -41,18 +41,22 @@ class GraphBuilder:
         self.graph = builder.compile()
         return self.graph
     
+    
     def run(self, question: str) -> dict:
         """
-        Runs the RAG operation graph with the given question.
+        Run the RAG workflow
+        
         Args:
-            question (str): The input question to process.
+            question: User question
+            
         Returns:
-            dict: The final state containing the answer and other details.
+            Final state with answer
         """
         if self.graph is None:
             self.build()
-
+        
         initial_state = RAGState(question=question)
+        return self.graph.invoke(initial_state)
 
 
 
